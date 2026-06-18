@@ -22,6 +22,15 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1927830191256159&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+
+<!-- UTMify - rastreamento de UTMs -->
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+<!-- End UTMify -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;900&family=Poppins:wght@400;700;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -812,6 +821,31 @@ src="https://www.facebook.com/tr?id=1927830191256159&ev=PageView&noscript=1"
     setTimeout(function(){$("qzFill").style.width=pct+"%";},150);
   }
 })();
+</script>
+
+<!-- UTMify back-redirect (aponta para o checkout do Hotmart) -->
+<script>
+  const link = 'https://pay.hotmart.com/U106318929K?checkoutMode=10';
+
+  function setBackRedirect(url) {
+    let urlBackRedirect = url;
+    urlBackRedirect = urlBackRedirect =
+      urlBackRedirect.trim() +
+      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
+      document.location.search.replace('?', '').toString();
+
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+
+    window.addEventListener('popstate', () => {
+      setTimeout(() => {
+        location.href = urlBackRedirect;
+      }, 1);
+    });
+  }
+
+  setBackRedirect(link);
 </script>
 
 </body>
